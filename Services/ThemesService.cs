@@ -9,9 +9,9 @@ namespace HAF.DesignTime {
   [Export(typeof(IThemesService)), PartCreationPolicy(CreationPolicy.Shared)]
   public class ThemesService : Service, IThemesService {
 
-    public ServiceDependency CanChangeTheme { get; private set; } = new ServiceDependency();
+    public LinkedDependency MayChangeTheme { get; private set; } = new LinkedDependency();
 
-    public ServiceEvent OnActiveThemeChanged { get; private set; } = new ServiceEvent();
+    public LinkedEvent OnActiveThemeChanged { get; private set; } = new LinkedEvent();
 
     public ObservableCollection<Theme> AvailableThemes { get; private set; } = new ObservableCollection<Theme>() {
       new Theme() {
@@ -56,7 +56,7 @@ namespace HAF.DesignTime {
 
     public RelayCommand<Theme> _SetTheme { get; private set; }
 
-    public ThemesService() {
+    protected override void Initialize() {
       this.ActiveTheme = this.AvailableThemes.FirstOrDefault();
     }
   }
