@@ -13,7 +13,7 @@ namespace HAF.DesignTime {
 
     public LinkedEvent OnActiveThemeChanged { get; private set; } = new LinkedEvent();
 
-    public ObservableCollection<Theme> AvailableThemes { get; private set; } = new ObservableCollection<Theme>() {
+    public NotifyCollection<Theme> AvailableThemes { get; private set; } = new NotifyCollection<Theme>() {
       new Theme() {
         Name = "Light",
         AccentColor = (Color)ColorConverter.ConvertFromString("#FF0B70BB"),

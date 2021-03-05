@@ -8,7 +8,7 @@ namespace HAF.Designtime {
   [Export(typeof(ITasksService)), PartCreationPolicy(CreationPolicy.Shared)]
   public class TasksService: Service, ITasksService {
 
-    public ObservableCollection<ObservableTaskPool> TaskPools { get; set; } = new ObservableCollection<ObservableTaskPool>();
+    public NotifyCollection<ObservableTaskPool> TaskPools { get; set; } = new NotifyCollection<ObservableTaskPool>();
 
     public ObservableTaskPool this[string name] {
       get { return this.TaskPools.FirstOrDefault(t => t.Name == name); }
