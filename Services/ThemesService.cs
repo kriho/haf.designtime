@@ -54,9 +54,9 @@ namespace HAF.DesignTime {
       get { return this.ActiveTheme.MarkerColor; }
     }
 
-    public RelayCommand<Theme> _SetTheme { get; private set; }
+    public RelayCommand<Theme> DoSetTheme { get; private set; }
 
-    protected override void Initialize() {
+    public ThemesService() {
       this.ActiveTheme = this.AvailableThemes.FirstOrDefault();
     }
   }
