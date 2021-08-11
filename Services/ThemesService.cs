@@ -17,44 +17,87 @@ namespace HAF.DesignTime {
       new Theme() {
         Name = "Light",
         AccentColor = (Color)ColorConverter.ConvertFromString("#FF0B70BB"),
-        MainColor = (Color)ColorConverter.ConvertFromString("#FFFFFFFF"),
-        BasicColor = (Color)ColorConverter.ConvertFromString("#FFDFDFDF"),
+        BackgroundColor = (Color)ColorConverter.ConvertFromString("#FFFFFFFF"),
+        LightColor = (Color)ColorConverter.ConvertFromString("#FFDFDFDF"),
         StrongColor = (Color)ColorConverter.ConvertFromString("#FF7E7E7E"),
-        MarkerColor = (Color)ColorConverter.ConvertFromString("#FF000000"),
+        TextColor = (Color)ColorConverter.ConvertFromString("#FF000000"),
       },
       new Theme() {
         Name = "Dark",
         AccentColor = (Color)ColorConverter.ConvertFromString("#FFB6C8F7"),
-        MainColor = (Color)ColorConverter.ConvertFromString("#FF1E1E1E"),
-        BasicColor = (Color)ColorConverter.ConvertFromString("#FF535353"),
+        BackgroundColor = (Color)ColorConverter.ConvertFromString("#FF1E1E1E"),
+        LightColor = (Color)ColorConverter.ConvertFromString("#FF535353"),
         StrongColor = (Color)ColorConverter.ConvertFromString("#FFC0C0C0"),
-        MarkerColor = (Color)ColorConverter.ConvertFromString("#FFFFFFFF"),
+        TextColor = (Color)ColorConverter.ConvertFromString("#FFFFFFFF"),
       }
     };
 
     public Theme ActiveTheme { get; set; }
 
+    public RelayCommand<Theme> DoSetTheme { get; private set; }
+
+    public Color BackgroundColor {
+      get => this.ActiveTheme.BackgroundColor;
+    }
+
+    public Brush BackgroundBrush {
+      get => new SolidColorBrush(this.ActiveTheme.BackgroundColor);
+    }
+
+    public Color TextColor {
+      get => this.ActiveTheme.TextColor;
+    }
+
+    public Brush TextBrush {
+      get => new SolidColorBrush(this.ActiveTheme.TextColor);
+    }
+
     public Color AccentColor {
-      get { return this.ActiveTheme.AccentColor; }
+      get => this.ActiveTheme.AccentColor;
+    }
+    public Brush AccentBrush {
+      get => new SolidColorBrush(this.ActiveTheme.AccentColor);
     }
 
-    public Color MainColor {
-      get { return this.ActiveTheme.MainColor; }
+    public Color LightColor {
+      get => this.ActiveTheme.LightColor;
     }
 
-    public Color BasicColor {
-      get { return this.ActiveTheme.BasicColor; }
+    public Brush LightBrush {
+      get => new SolidColorBrush(this.ActiveTheme.LightColor);
     }
 
     public Color StrongColor {
-      get { return this.ActiveTheme.StrongColor; }
+      get => this.ActiveTheme.StrongColor;
     }
 
-    public Color MarkerColor {
-      get { return this.ActiveTheme.MarkerColor; }
+    public Brush StrongBrush {
+      get => new SolidColorBrush(this.ActiveTheme.StrongColor);
     }
 
-    public RelayCommand<Theme> DoSetTheme { get; private set; }
+    public Color InfoColor {
+      get => this.ActiveTheme.InfoColor;
+    }
+
+    public Brush InfoBrush {
+      get => new SolidColorBrush(this.ActiveTheme.InfoColor);
+    }
+
+    public Color WarningColor {
+      get => this.ActiveTheme.WarningColor;
+    }
+
+    public Brush WarningBrush {
+      get => new SolidColorBrush(this.ActiveTheme.WarningColor);
+    }
+
+    public Color ErrorColor {
+      get => this.ActiveTheme.ErrorColor;
+    }
+
+    public Brush ErrorBrush {
+      get => new SolidColorBrush(this.ActiveTheme.ErrorColor);
+    }
 
     public ThemesService() {
       this.ActiveTheme = this.AvailableThemes.FirstOrDefault();
