@@ -1,0 +1,21 @@
+name: publish to nuget
+on:
+  push:
+    branches:
+      - master
+jobs:
+  publish:
+    name: build, pack & publish
+    runs-on: windows-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+      - name: restore
+        run: msbuild -t:restore
+      - name: pack
+        run: msbuild -t:pack
+      - name: publish
+        run: dotnet nuget push "HAF.DesignTime.*.nupkg" --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+          
