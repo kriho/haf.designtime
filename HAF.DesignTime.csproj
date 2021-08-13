@@ -12,6 +12,14 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <PackageId>$(AssemblyName)</PackageId>
+    <Title>Design time support for the Holistic Application Framework</Title>
+    <Version>1.0.0</Version>
+    <Authors>Kristjan Hornung</Authors>
+    <PackageOutputPath>.</PackageOutputPath>
+    <Description>
+      Design time support for the Holistic Application Framework (HAF) simplifies the UI design by providing default data for all HAF services.
+    </Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,11 +55,9 @@
     <Compile Include="Services\TasksService.cs" />
     <Compile Include="Services\ThemesService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HAF\HAF.csproj">
-      <Project>{2350a0ff-7af9-4a41-aa57-00bf4ea22c84}</Project>
-      <Name>HAF</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.2.0" />
+    <PackageReference Include="HAF" Version="1.0.0" />
+  </ItemGroup>
 </Project>
