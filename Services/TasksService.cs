@@ -3,30 +3,40 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 
-namespace HAF.Designtime {
+namespace HAF {
 
   [Export(typeof(ITasksService)), PartCreationPolicy(CreationPolicy.Shared)]
   public class TasksService: Service, ITasksService {
 
-    private NotifyCollection<ObservableTaskPool> taskPools = new NotifyCollection<ObservableTaskPool>();
-    public IReadOnlyNotifyCollection<ObservableTaskPool> TaskPools => this.taskPools;
+    private NotifyCollection<IObservableTaskPool> taskPools = new NotifyCollection<IObservableTaskPool>();
+    IReadOnlyNotifyCollection<IObservableTaskPool> ITasksService.TaskPools => this.taskPools;
 
-    public ObservableTaskPool this[string name] {
-      get { return this.TaskPools.FirstOrDefault(t => t.Name == name); }
+    public IObservableTaskPool this[string name] {
+      get { return this.taskPools.FirstOrDefault(t => t.Name == name); }
     }
 
     public TasksService() {
-      var pool = new ObservableTaskPool("Fast tasks", true);
-      pool.ScheduleTask(new ObservableTask("make something good"));
-      pool.ScheduleTask(new ObservableTask("make something bad"));
-      pool.ScheduleTask(new ObservableTask("make something ugly"));
-      this.taskPools.Add(pool);
-      pool = new ObservableTaskPool("Long running tasks", false);
-      pool.ScheduleTask(new ObservableTask("build something great"));
-      this.taskPools.Add(pool);
+      for (var x = 0; x < Faker.RandomNumber.Next(3, 10); x++) {
+        var pool = new DesignTime.Models.ObservableTaskPool() {
+          Name = Faker.Company.CatchPhrase(),
+          AllowParallelExecution = Faker.RandomNumber.Next(0, 1) == 0,
+        };
+        for (var y = 0; y < Faker.RandomNumber.Next(0, 5); y++) {
+          pool.ActiveTasks.Add(new DesignTime.Models.ObservableTask() {
+            Progress = new DesignTime.Models.ObservableTaskProgress() {
+              Description = Faker.Lorem.Sentence(5),
+              IsIndeterminate = Faker.RandomNumber.Next(0, 5) == 0,
+              Maximum = Faker.RandomNumber.Next(50, 100),
+              Value = Faker.RandomNumber.Next(0, 50),
+            }
+          });
+        }
+        this.taskPools.Add(pool);
+      }
     }
     
     public void AddTaskPool(string name, bool allowParallelExecution) {
+        throw new NotImplementedException();
     }
   }
 }
