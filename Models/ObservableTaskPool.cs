@@ -13,10 +13,10 @@ namespace HAF.DesignTime.Models {
 
     public LinkedState IsIdle { get; set; }
 
-    public NotifyCollection<IObservableTask> ActiveTasks { get; set; } = new NotifyCollection<IObservableTask>();
-    IReadOnlyNotifyCollection<IObservableTask> IObservableTaskPool.ActiveTasks => this.ActiveTasks;
+    public ObservableCollection<IObservableTask> ActiveTasks { get; set; } = new ObservableCollection<IObservableTask>();
+    IReadOnlyObservableCollection<IObservableTask> IObservableTaskPool.ActiveTasks => this.ActiveTasks;
 
-    public NotifyCollection<IObservableTask> RegisteredTasks { get; set; } = new NotifyCollection<IObservableTask>();
-    IReadOnlyNotifyCollection<IObservableTask> IObservableTaskPool.RegisteredTasks => this.RegisteredTasks;
+    public ObservableCollection<IObservableTask> RegisteredTasks { get; set; } = new ObservableCollection<IObservableTask>();
+    IReadOnlyObservableCollection<IObservableTask> IObservableTaskPool.RegisteredTasks => this.RegisteredTasks;
   }
 }

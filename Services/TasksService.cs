@@ -8,8 +8,8 @@ namespace HAF {
   [Export(typeof(ITasksService)), PartCreationPolicy(CreationPolicy.Shared)]
   public class TasksService: Service, ITasksService {
 
-    private NotifyCollection<IObservableTaskPool> taskPools = new NotifyCollection<IObservableTaskPool>();
-    IReadOnlyNotifyCollection<IObservableTaskPool> ITasksService.TaskPools => this.taskPools;
+    private readonly ObservableCollection<IObservableTaskPool> taskPools = new ObservableCollection<IObservableTaskPool>();
+    IReadOnlyObservableCollection<IObservableTaskPool> ITasksService.TaskPools => this.taskPools;
 
     public IObservableTaskPool this[string name] {
       get { return this.taskPools.FirstOrDefault(t => t.Name == name); }
