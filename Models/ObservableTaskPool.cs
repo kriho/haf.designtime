@@ -16,7 +16,8 @@ namespace HAF.DesignTime.Models {
     public ObservableCollection<IObservableTask> ActiveTasks { get; set; } = new ObservableCollection<IObservableTask>();
     IReadOnlyObservableCollection<IObservableTask> IObservableTaskPool.ActiveTasks => this.ActiveTasks;
 
-    public ObservableCollection<IObservableTask> RegisteredTasks { get; set; } = new ObservableCollection<IObservableTask>();
-    IReadOnlyObservableCollection<IObservableTask> IObservableTaskPool.RegisteredTasks => this.RegisteredTasks;
+    public Task ScheduleTask(IObservableTask task) {
+      throw new NotImplementedException();
+    }
   }
 }

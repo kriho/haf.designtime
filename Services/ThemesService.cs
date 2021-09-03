@@ -13,7 +13,7 @@ namespace HAF.DesignTime {
 
     public LinkedEvent OnActiveThemeChanged { get; private set; } = new LinkedEvent(nameof(OnActiveThemeChanged));
 
-    public IObservableCollection<Theme> AvailableThemes { get; private set; } = new ObservableCollection<Theme>() {
+    public IObservableCollection<ITheme> AvailableThemes { get; private set; } = new ObservableCollection<ITheme>() {
       new Theme() {
         Name = "Light",
         AccentColor = (Color)ColorConverter.ConvertFromString("#FF0B70BB"),
@@ -32,9 +32,9 @@ namespace HAF.DesignTime {
       }
     };
 
-    public Theme ActiveTheme { get; set; }
+    public ITheme ActiveTheme { get; set; }
 
-    public RelayCommand<Theme> DoSetTheme { get; private set; }
+    public RelayCommand<ITheme> DoSetTheme { get; private set; }
 
     public Color BackgroundColor {
       get => this.ActiveTheme.BackgroundColor;
@@ -103,7 +103,7 @@ namespace HAF.DesignTime {
       this.ActiveTheme = this.AvailableThemes.FirstOrDefault();
     }
 
-    public Theme DefaultLightTheme { get; private set; } = new Theme() {
+    public ITheme DefaultLightTheme { get; private set; } = new Theme() {
       Name = "Light",
       AccentColor = (Color)ColorConverter.ConvertFromString("#FF0B70BB"),
       BackgroundColor = (Color)ColorConverter.ConvertFromString("#FFFFFFFF"),
@@ -115,7 +115,7 @@ namespace HAF.DesignTime {
       ErrorColor = (Color)ColorConverter.ConvertFromString("#FFFFD2D2"),
     };
 
-    public Theme DefaultDarkTheme { get; private set; } = new Theme() {
+    public ITheme DefaultDarkTheme { get; private set; } = new Theme() {
       Name = "Dark",
       AccentColor = (Color)ColorConverter.ConvertFromString("#FFB6C8F7"),
       BackgroundColor = (Color)ColorConverter.ConvertFromString("#FF1E1E1E"),
