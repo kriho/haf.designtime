@@ -15,7 +15,7 @@ namespace HAF.DesignTime {
 
     public IObservableCollection<ITheme> AvailableThemes { get; private set; } = new ObservableCollection<ITheme>() {
       new Theme() {
-        Name = "Light",
+        Name = new LocalizedText("Light"),
         AccentColor = (Color)ColorConverter.ConvertFromString("#FF0B70BB"),
         BackgroundColor = (Color)ColorConverter.ConvertFromString("#FFFFFFFF"),
         LightColor = (Color)ColorConverter.ConvertFromString("#FFDFDFDF"),
@@ -23,7 +23,7 @@ namespace HAF.DesignTime {
         TextColor = (Color)ColorConverter.ConvertFromString("#FF000000"),
       },
       new Theme() {
-        Name = "Dark",
+        Name = new LocalizedText("Dark"),
         AccentColor = (Color)ColorConverter.ConvertFromString("#FFB6C8F7"),
         BackgroundColor = (Color)ColorConverter.ConvertFromString("#FF1E1E1E"),
         LightColor = (Color)ColorConverter.ConvertFromString("#FF535353"),
@@ -104,7 +104,7 @@ namespace HAF.DesignTime {
     }
 
     public ITheme DefaultLightTheme { get; private set; } = new Theme() {
-      Name = "Light",
+      Name = new LocalizedText("Light"),
       AccentColor = (Color)ColorConverter.ConvertFromString("#FF0B70BB"),
       BackgroundColor = (Color)ColorConverter.ConvertFromString("#FFFFFFFF"),
       LightColor = (Color)ColorConverter.ConvertFromString("#FFDFDFDF"),
@@ -116,7 +116,7 @@ namespace HAF.DesignTime {
     };
 
     public ITheme DefaultDarkTheme { get; private set; } = new Theme() {
-      Name = "Dark",
+      Name = new LocalizedText("Dark"),
       AccentColor = (Color)ColorConverter.ConvertFromString("#FFB6C8F7"),
       BackgroundColor = (Color)ColorConverter.ConvertFromString("#FF1E1E1E"),
       LightColor = (Color)ColorConverter.ConvertFromString("#FF535353"),

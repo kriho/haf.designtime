@@ -36,7 +36,7 @@ namespace HAF {
     }
     
     public IObservableTaskPool AddTaskPool(string name, bool allowParallelExecution) {
-        throw new NotImplementedException();
+      return null;
     }
   }
 }
