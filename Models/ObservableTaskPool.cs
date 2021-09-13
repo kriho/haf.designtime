@@ -9,7 +9,7 @@ namespace HAF.DesignTime.Models {
   public class ObservableTaskPool: IObservableTaskPool {
     public string Name { get; set; }
 
-    public bool AllowParallelExecution { get; set; }
+    public int ParallelExecutionLimit { get; set; }
 
     public LinkedState IsIdle { get; set; }
 

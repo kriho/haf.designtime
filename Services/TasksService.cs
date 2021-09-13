@@ -19,7 +19,7 @@ namespace HAF {
       for (var x = 0; x < Faker.RandomNumber.Next(3, 10); x++) {
         var pool = new DesignTime.Models.ObservableTaskPool() {
           Name = Faker.Company.CatchPhrase(),
-          AllowParallelExecution = Faker.RandomNumber.Next(0, 1) == 0,
+          ParallelExecutionLimit = Faker.RandomNumber.Next(0, 10)
         };
         for (var y = 0; y < Faker.RandomNumber.Next(0, 5); y++) {
           pool.ActiveTasks.Add(new DesignTime.Models.ObservableTask() {
@@ -35,7 +35,7 @@ namespace HAF {
       }
     }
     
-    public IObservableTaskPool AddTaskPool(string name, bool allowParallelExecution) {
+    public IObservableTaskPool AddTaskPool(string name, int parallelExecutionLimit) {
       return null;
     }
   }
